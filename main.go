@@ -2,13 +2,16 @@ package main
 
 import (
     "github.com/deanveloper/karman"
+    "log"
     "os"
     "os/signal"
     "syscall"
 )
 
 func main() {
-    bots := []Bot{karman.New()}
+    bots := []Bot {
+        karman.New(log.New(os.Stdout, "[Karman]", log.Ldate | log.Ltime)),
+    }
 
     for _, bot := range bots {
         go bot.Start()
@@ -20,11 +23,11 @@ func main() {
     <-sigChan
 
     for _, bot := range bots {
-        go bot.Close()
+        go bot.Stop()
     }
 }
 
 type Bot interface {
     Start()
-    Close()
+    Stop()
 }
