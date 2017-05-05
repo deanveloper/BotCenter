@@ -42,7 +42,7 @@ func main() {
                 fmt.Println("That bot does not take commands")
             }
         } else {
-
+            fmt.Println("Command not found:", split[0])
         }
     }
 }
