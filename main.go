@@ -32,14 +32,17 @@ func main() {
         if input == "stop" {
             break
         }
-        bot := bots[input]
+        split := strings.Split(input, " ")
+        bot := bots[split[0]]
         if bot != nil {
             cmdr, ok := bot.(Commander)
             if ok {
-                cmdr.Command(strings.Split(input, " ")[1:])
+                cmdr.Command(split[1:])
             } else {
                 fmt.Println("That bot does not take commands")
             }
+        } else {
+
         }
     }
 }
