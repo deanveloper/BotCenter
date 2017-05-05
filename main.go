@@ -2,6 +2,7 @@ package main
 
 import (
     "github.com/deanveloper/karman"
+    "github.com/deanveloper/stacy"
     "log"
     "os"
     "os/signal"
@@ -11,6 +12,7 @@ import (
 func main() {
     bots := []Bot {
         karman.New(log.New(os.Stdout, "[Karman]", log.Ldate | log.Ltime)),
+        stacy.New(log.New(os.Stdout, "[Stacy]", log.Ldate | log.Ltime)),
     }
 
     for _, bot := range bots {

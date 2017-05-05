@@ -15,6 +15,12 @@
 			"revisionTime": "2017-05-03T20:10:52Z"
 		},
 		{
+			"checksumSHA1": "2sjNS1SwYoX2RJ/brdNnZLwyiPU=",
+			"path": "github.com/deanveloper/stacy",
+			"revision": "67a63e611144f14a980c03593c0eec3ba0ea9b19",
+			"revisionTime": "2017-05-05T03:43:29Z"
+		},
+		{
 			"checksumSHA1": "6X3O3mfvOyiwV2iAb5GjxARs08c=",
 			"path": "github.com/garyburd/redigo/internal",
 			"revision": "0d253a66e6e1349f4581d6d2b300ee434ee2da9f",
