@@ -7,21 +7,42 @@ import (
     "log"
     "os"
     "strings"
+    "time"
 )
 
 func main() {
-    bots := map[string]Bot {
-        "karman": karman.New(log.New(os.Stdout, "[Karman]", log.Ldate | log.Ltime)),
+    bots := map[string]Bot{
+        "karman": karman.New(log.New(os.Stdout, "[Karman]", log.Ldate|log.Ltime)),
     }
 
+    // start all bots
     for _, bot := range bots {
         go bot.Start()
     }
 
+    // stop all bots when we stop
     defer func() {
         fmt.Println("Stopping bots gracefully...")
-        for _, bot := range bots {
-            bot.Stop()
+
+        done := make(chan string)
+        timeout := time.After(5 * time.Second)
+
+        for key, bot := range bots {
+            go func(key string, bot Bot) {
+                bot.Stop()
+                done <- key
+            }(key, bot)
+        }
+
+        for i := 0; i < len(bots); i++ {
+            select {
+            case s := <-done:
+                bots[s] = nil
+            case <-timeout:
+                for key := range bots {
+                    fmt.Println("Timed out:", key)
+                }
+            }
         }
     }()
 
