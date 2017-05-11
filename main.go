@@ -4,6 +4,7 @@ import (
     "bufio"
     "fmt"
     "github.com/deanveloper/karman"
+    "github.com/deanveloper/xkcdnews"
     "log"
     "os"
     "strings"
@@ -13,6 +14,7 @@ import (
 func main() {
     bots := map[string]Bot{
         "karman": karman.New(log.New(os.Stdout, "[Karman]", log.Ldate|log.Ltime)),
+        "xkcdnews": xkcdnews.New(log.New(os.Stdout, "[XKCDNews]", log.Ldate|log.Ltime)),
     }
 
     // start all bots
